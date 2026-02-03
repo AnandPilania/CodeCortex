@@ -1,0 +1,12 @@
+{
+    "name": "codecortex",
+    "version": "0.0.4",
+    "type": "module",
+    "bin": {
+        "codecortex": "./cli.js"
+    },
+    "dependencies": {
+        "express": "^4.18.2",
+        "cors": "^2.8.5"
+    }
+}

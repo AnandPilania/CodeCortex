@@ -1835,7 +1835,7 @@ var CodeCortex = class {
             console.error(`Error: Path "${targetPath}" does not exist.`);
             process.exit(1);
         }
-        console.log("CodeCortex v0.0.3 (Hierarchical Driver Architecture)\n");
+        console.log("CodeCortex v0.0.4 (Hierarchical Driver Architecture)\n");
         this.scanDirectory(targetPath);
         this.globalStats.endTime = Date.now();
         this.printReport();

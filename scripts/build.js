@@ -28,7 +28,7 @@ async function buildCLI() {
             outfile: path.join(distDir, 'cli.js'),
             external: ['express', 'cors'], // Don't bundle server dependencies
             banner: {
-                js: '#!/usr/bin/env node\n'
+                // js: '#!/usr/bin/env node\n'
             },
             minify: false,
             sourcemap: false
@@ -44,7 +44,7 @@ async function buildCLI() {
     }
 }
 
-// Bundle server
+// Bundle server - but don't bundle problematic dependencies
 async function buildServer() {
     try {
         await build({
@@ -54,14 +54,66 @@ async function buildServer() {
             target: 'node18',
             format: 'esm',
             outfile: path.join(distDir, 'server.js'),
-            external: [], // Bundle everything for server
+            // Externalize problematic packages that use dynamic requires
+            external: [
+                'express',
+                'cors',
+                'path',
+                'fs',
+                'url',
+                'http',
+                'https',
+                'stream',
+                'util',
+                'zlib',
+                'net',
+                'tls',
+                'crypto',
+                'dns',
+                'child_process',
+                'os',
+                'events',
+                'buffer',
+                'string_decoder',
+                'querystring'
+            ],
             minify: false,
             sourcemap: false
         });
-        console.log('✅ Built server.js (standalone)');
+        console.log('✅ Built server.js');
     } catch (error) {
         console.error('❌ Failed to build server:', error);
         process.exit(1);
+    }
+}
+
+// Copy package.json to dist
+function copyPackageJson() {
+    try {
+        const packagePath = path.join(__dirname, '..', 'package.json');
+        const packageData = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
+
+        // Create minimal package.json for dist
+        const distPackage = {
+            name: packageData.name,
+            version: packageData.version,
+            type: "module",
+            bin: {
+                "codecortex": "./cli.js"
+            },
+            dependencies: {
+                "express": packageData.dependencies?.express || "^4.18.2",
+                "cors": packageData.dependencies?.cors || "^2.8.5"
+            }
+        };
+
+        fs.writeFileSync(
+            path.join(distDir, 'package.json'),
+            JSON.stringify(distPackage, null, 2)
+        );
+        console.log('✅ Created dist/package.json');
+    } catch (error) {
+        console.error('❌ Failed to copy package.json:', error);
     }
 }
 
@@ -69,7 +121,14 @@ async function buildServer() {
 async function buildAll() {
     await buildCLI();
     await buildServer();
-    console.log('\n✨ Server build complete!\n');
+    copyPackageJson();
+    console.log('\n✨ Server build complete!');
+    console.log('\n📦 To use the standalone server:');
+    console.log('   1. cd dist');
+    console.log('   2. npm install');
+    console.log('   3. node server.js');
+    console.log('\n🚀 To use the CLI:');
+    console.log('   node cli.js --help');
 }
 
 buildAll();

@@ -30,7 +30,7 @@ A powerful, modular multi-language code analyzer with **beautiful web dashboard*
 codecortex .
 ```
 ```
-CodeCortex v0.0.2
+CodeCortex v0.0.4
 
 Files                    234
   Analyzed               198
