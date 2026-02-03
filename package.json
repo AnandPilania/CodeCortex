@@ -1,0 +1,61 @@
+{
+    "name": "codecortex",
+    "version": "0.0.1",
+    "description": "A modular, multi-language project analyzer with hierarchical driver architecture for PHP, JavaScript, TypeScript, React, Vue, and Blade.",
+    "main": "./src/cli.js",
+    "type": "module",
+    "bin": {
+        "codecortex": "./src/cli.js"
+    },
+    "scripts": {
+        "start": "node ./src/cli.js",
+        "analyze": "node ./src/cli.js .",
+        "list-drivers": "node ./src/cli.js --list-drivers",
+        "show-hierarchy": "node ./src/cli.js --show-hierarchy",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "codecortex",
+        "code-analyzer",
+        "project-analyzer",
+        "static-analysis",
+        "code-quality",
+        "laravel",
+        "php",
+        "javascript",
+        "typescript",
+        "react",
+        "vue",
+        "blade",
+        "dead-code",
+        "duplicate-code",
+        "complexity",
+        "metrics",
+        "cli"
+    ],
+    "author": {
+        "name": "Anand Pilania",
+        "email": "pilaniaanand@gmail.com"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/AnandPilania/CodeCortex.git"
+    },
+    "bugs": {
+        "url": "https://github.com/AnandPilania/CodeCortex/issues"
+    },
+    "homepage": "https://github.com/AnandPilania/CodeCortex#readme",
+    "files": [
+        "src/",
+        "README.md",
+        "LICENSE"
+    ],
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "preferGlobal": true,
+    "publishConfig": {
+        "access": "public"
+    }
+}

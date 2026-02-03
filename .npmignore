@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Testing
+coverage/
+.nyc_output/
+*.test.js
+*.spec.js
+test/
+tests/
+__tests__/
+
+# Development
+.git/
+.github/
+.vscode/
+.idea/
+*.log
+*.tmp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Example/Demo files
+examples/
+demo/
+sample-projects/
+
+# Documentation (keep README.md)
+docs/
+
+# Build artifacts
+dist/
+build/
+*.tgz
