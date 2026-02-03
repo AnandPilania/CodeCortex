@@ -69,7 +69,7 @@ export default class CodeCortex {
             process.exit(1);
         }
 
-        console.log('CodeCortex v0.0.1 (Hierarchical Driver Architecture)\n');
+        console.log('CodeCortex v0.0.3 (Hierarchical Driver Architecture)\n');
 
         this.scanDirectory(targetPath);
         this.globalStats.endTime = Date.now();

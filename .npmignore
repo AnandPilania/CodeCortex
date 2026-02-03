@@ -33,6 +33,6 @@ sample-projects/
 docs/
 
 # Build artifacts
-dist/
+# dist/
 build/
 *.tgz
