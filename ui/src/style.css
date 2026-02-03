@@ -1,0 +1,120 @@
+@import 'tailwindcss';
+
+@theme {
+    --color-primary-50: #f0f9ff;
+    --color-primary-100: #e0f2fe;
+    --color-primary-200: #bae6fd;
+    --color-primary-300: #7dd3fc;
+    --color-primary-400: #38bdf8;
+    --color-primary-500: #0ea5e9;
+    --color-primary-600: #0284c7;
+    --color-primary-700: #0369a1;
+    --color-primary-800: #075985;
+    --color-primary-900: #0c4a6e;
+
+    --color-success-50: #f0fdf4;
+    --color-success-500: #22c55e;
+    --color-success-700: #15803d;
+
+    --color-warning-50: #fffbeb;
+    --color-warning-500: #f59e0b;
+    --color-warning-700: #b45309;
+
+    --color-danger-50: #fef2f2;
+    --color-danger-500: #ef4444;
+    --color-danger-700: #b91c1c;
+
+    --font-sans: Inter, system-ui, sans-serif;
+    --font-mono: JetBrains Mono, Consolas, monospace;
+}
+
+@layer base {
+
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentcolor);
+    }
+}
+
+@utility card {
+    @apply bg-white rounded-lg shadow-xs border border-gray-200 p-6;
+}
+
+@utility card-header {
+    @apply text-lg font-semibold text-gray-900 mb-4;
+}
+
+@utility badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+@utility badge-success {
+    @apply bg-success-50 text-success-700;
+}
+
+@utility badge-warning {
+    @apply bg-warning-50 text-warning-700;
+}
+
+@utility badge-danger {
+    @apply bg-danger-50 text-danger-700;
+}
+
+@utility badge-primary {
+    @apply bg-primary-50 text-primary-700;
+}
+
+@utility stat-card {
+    @apply bg-linear-to-br from-white to-gray-50 rounded-lg p-6 border border-gray-200 hover:shadow-md transition-shadow;
+}
+
+@utility metric-value {
+    @apply text-3xl font-bold text-gray-900;
+}
+
+@utility metric-label {
+    @apply text-sm text-gray-600 mt-1;
+}
+
+@layer base {
+    body {
+        @apply bg-gray-50 text-gray-900 font-sans;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

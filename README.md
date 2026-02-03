@@ -1,20 +1,59 @@
-# Project Analyzer
+# CodeCortex 🚀
 
-[![npm version](https://img.shields.io/npm/v/CodeCortex.svg)](https://www.npmjs.com/packageCodeCortex)
+[![npm version](https://img.shields.io/npm/v/codecortex.svg)](https://www.npmjs.com/package/codecortex)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A powerful, modular multi-language code analyzer with hierarchical driver architecture for PHP, JavaScript, TypeScript, React, Vue, Blade, and Laravel projects.
+A powerful, modular multi-language code analyzer with **beautiful web dashboard** for PHP, JavaScript, TypeScript, React, Vue, Blade, and Laravel projects.
 
 ## ✨ Features
 
-- 🔍 **Multi-Language Support**: Analyzes PHP, JavaScript, TypeScript, React, Vue, and Blade templates
-- 🏗️ **Hierarchical Architecture**: Smart driver inheritance (e.g., Blade extends PHP, TypeScript extends JavaScript)
+### Core Analysis
+- 🔍 **Multi-Language Support**: Analyzes PHP, JavaScript, TypeScript, React, Vue, and Blade
+- 🏗️ **Hierarchical Architecture**: Smart driver inheritance (Blade extends PHP, TypeScript extends JavaScript)
 - 🚀 **Laravel-Specific Analysis**: Enhanced analyzer for Laravel projects with code quality metrics
 - 📊 **Dead Code Detection**: Finds unused classes, methods, and imports
 - 🔁 **Duplicate Code Detection**: Identifies similar code blocks across files
 - 📈 **Code Quality Scoring**: Automated quality assessment with actionable recommendations
-- ⚡ **Fast & Efficient**: Optimized scanning with intelligent file filtering
-- 🎯 **Auto-Detection**: Automatically detects project type (Laravel, Node.js, etc.)
+
+### New: Web Dashboard 🎨
+- 📊 **Interactive Visualizations**: Beautiful charts and graphs
+- 🌐 **Real-time Dashboard**: View analysis results in your browser
+- 🎯 **RESTful API**: Express.js server with API endpoints
+- ⚡ **Modern Stack**: Built with Vue.js 3, Vite, and Tailwind CSS
+- 📱 **Responsive Design**: Works perfectly on desktop, tablet, and mobile
+- 🔄 **Auto-refresh**: Dashboard updates automatically
+
+## 🎯 Quick Preview
+
+### Command Line Output
+```bash
+codecortex .
+```
+```
+CodeCortex v0.0.2
+
+Files                    234
+  Analyzed               198
+  Skipped                36
+
+Files by Language
+  PHP                    89 (44.95%)
+  JavaScript             67 (33.84%)
+  Blade                  42 (21.21%)
+
+Code Quality Score: 87/100 ✅
+```
+
+### Web Dashboard
+```bash
+codecortex . --ui
+```
+Opens a beautiful dashboard at `http://localhost:3000` with:
+- 📊 Interactive pie charts for language distribution
+- 📈 Bar charts for code metrics
+- 🎯 Code quality scores and recommendations
+- 📋 Detailed file breakdowns
+- 🧹 Dead code and duplicate code analysis
 
 ## 📦 Installation
 
@@ -42,50 +81,9 @@ Then run via npx:
 npx codecortex ./my-project
 ```
 
-Or add to your `package.json` scripts:
+## 🚀 Usage
 
-```json
-{
-  "scripts": {
-    "analyze": "codecortex ."
-  }
-}
-```
-
-## 🚀 Quick Start
-
-### Analyze any project
-
-```bash
-codecortex .
-```
-
-### Analyze with specific analyzer
-
-```bash
-# Use Laravel analyzer
-codecortex ./app --analyzer laravel
-
-# Use general project analyzer
-codecortex ./src --analyzer project
-```
-
-### List available features
-
-```bash
-# Show all available analyzers
-codecortex --list-analyzers
-
-# Show all language drivers
-codecortex --list-drivers
-
-# Show driver inheritance hierarchy
-codecortex --show-hierarchy
-```
-
-## 📖 Usage Examples
-
-### Basic Project Analysis
+### CLI Mode (Terminal Output)
 
 ```bash
 # Analyze current directory
@@ -94,132 +92,169 @@ codecortex .
 # Analyze specific directory
 codecortex ./src
 
-# Auto-detect and analyze
-codecortex /path/to/project
-```
-
-### Laravel Project Analysis
-
-```bash
-# Analyze Laravel project with enhanced features
+# Use Laravel analyzer
 codecortex . --analyzer laravel
 
-# Analyze Laravel app directory
-codecortex ./app --analyzer laravel
+# Export to JSON
+codecortex . --json report.json
 ```
 
-### Using in npm Scripts
-
-Add to your `package.json`:
-
-```json
-{
-  "scripts": {
-    "analyze": "codecortex .",
-    "analyze:laravel": "codecortex . --analyzer laravel",
-    "analyze:quality": "codecortex ./app --analyzer laravel"
-  }
-}
-```
-
-Then run:
+### Web UI Mode (Dashboard)
 
 ```bash
-npm run analyze
-npm run analyze:laravel
+# Method 1: One-shot analysis with auto-open browser
+codecortex . --ui
+
+# Method 2: Start server, then analyze
+# Terminal 1:
+codecortex --server
+
+# Terminal 2:
+codecortex . --ui
+
+# Custom port
+codecortex --server --port 8080
+codecortex . --ui --port 8080
 ```
+
+### Available Commands
+
+```bash
+# Help
+codecortex --help
+
+# List available analyzers
+codecortex --list-analyzers
+
+# List supported languages/drivers
+codecortex --list-drivers
+
+# Show driver hierarchy
+codecortex --show-hierarchy
+
+# Start web server only
+codecortex --server
+
+# Analyze with UI
+codecortex <path> --ui
+
+# Export to JSON
+codecortex <path> --json output.json
+```
+
+## 🎨 Web Dashboard Features
+
+### Overview Section
+- 📊 Total files analyzed
+- 📈 Total lines of code
+- 📁 Number of directories
+- ⭐ Code quality score (Laravel projects)
+
+### Interactive Charts
+- **Language Distribution**: Doughnut chart showing file distribution
+- **Code Metrics**: Bar chart for LOC, CLOC, NCLOC, LLOC
+- **Real-time Updates**: Auto-refresh every 30 seconds
+
+### Laravel Enhanced View
+- 🧹 **Dead Code**: Unused classes, methods, imports
+- 🔁 **Duplicate Code**: Similar code blocks detection
+- 📊 **Quality Score**: 0-100 score with breakdown
+- ℹ️ **Project Info**: Laravel version, frontend stack
+- 💡 **Recommendations**: Actionable improvement suggestions
+
+### File Breakdown Table
+- Detailed language/framework breakdown
+- File counts and percentages
+- Lines of code metrics
+- Visual progress indicators
 
 ## 🎯 Supported Languages & Frameworks
 
 ### Base Drivers
-- **PHP** (.php files) - Classes, methods, functions, complexity analysis
-- **JavaScript** (.js, .mjs, .cjs files) - Functions, classes, ES6+ features
+- **PHP** (.php files) - Classes, methods, functions, complexity
+- **JavaScript** (.js, .mjs, .cjs) - Functions, classes, ES6+ features
 
 ### Extended Drivers
-- **Blade** (.blade.php) - Extends PHP with Blade directives and components
-- **TypeScript** (.ts) - Extends JavaScript with interfaces, types, and enums
-- **React (JSX)** (.jsx) - Extends JavaScript with components and hooks
-- **React TypeScript** (.tsx) - Extends TypeScript with React features
-- **Vue** (.vue) - Extends JavaScript with Vue components and directives
+- **Blade** (.blade.php) - Extends PHP + Blade directives
+- **TypeScript** (.ts) - Extends JavaScript + types
+- **React (JSX)** (.jsx) - Extends JavaScript + components
+- **React TypeScript** (.tsx) - Extends TypeScript + React
+- **Vue** (.vue) - Extends JavaScript + Vue components
 
 ### Configuration Files
-- **JSON** (.json) - General JSON file analysis
-- **package.json** - Node.js dependency analysis
-- **composer.json** - PHP dependency analysis
+- **JSON** (.json)
+- **package.json** - Node.js dependencies
+- **composer.json** - PHP dependencies
 
 ## 📊 Analyzers
 
-### 1. General Project Analyzer
+### 1. General Project Analyzer (Default)
 
-The default analyzer for any project type.
-
-**Features:**
-- Multi-language support
-- File type distribution
-- Lines of code metrics (LOC, CLOC, NCLOC, LLOC)
-- Cyclomatic complexity
-- Directory structure analysis
-
-**Usage:**
 ```bash
 codecortex ./src --analyzer project
 ```
 
+Features:
+- Multi-language support
+- File type distribution
+- LOC metrics (LOC, CLOC, NCLOC, LLOC)
+- Cyclomatic complexity
+- Directory structure analysis
+
 ### 2. Laravel Analyzer
 
-Enhanced analyzer specifically for Laravel projects.
-
-**Additional Features:**
-- Laravel version detection
-- Frontend stack detection (Vue, React, Inertia, Livewire, Tailwind)
-- Dead code analysis (unused classes, methods, imports)
-- Duplicate code detection
-- Code quality scoring (0-100)
-- Security issue detection
-- Performance recommendations
-- Blade template analysis
-
-**Usage:**
 ```bash
 codecortex . --analyzer laravel
 ```
 
-**Sample Output:**
+Additional features:
+- Laravel version detection
+- Frontend stack detection (Vue, React, Inertia, etc.)
+- Dead code analysis
+- Duplicate code detection
+- Code quality scoring
+- Security issue detection
+- Performance recommendations
+- Blade template analysis
+
+## 🛠️ Development
+
+### Setup for Development
+
+```bash
+# Clone repository
+git clone https://github.com/AnandPilania/codecortex.git
+cd codecortex
+
+# Install dependencies
+npm install
+
+# Build project
+npm run build
+
+# Run in development mode
+npm run dev          # UI dev server (Vite)
+npm run server:dev   # API server
 ```
-🚀 ENHANCED LARAVEL ANALYSIS REPORT
-============================================================
 
-📋 Project Information
-  Type                      Laravel
-  Laravel Version           ^10.0
+### Available Scripts
 
-🎨 Frontend Stack
-  - Vue 3.2.47
-  - Inertia.js
-  - Tailwind CSS
-
-📊 Code Quality Score
-  Overall Score: 87/100 ✅
-
-🧹 Dead Code Analysis
-  Unused Classes            3
-  Unused Methods            12
-  Unused Imports            8
-
-🔁 Duplicate Code Analysis
-  Duplicate Blocks Found    5
-
-💡 Recommendations
-  1. Remove 3 unused classes to reduce codebase size
-  2. Remove 12 unused methods to improve maintainability
-  3. Refactor 5 duplicate code blocks into reusable functions
+```json
+{
+  "dev": "vite",                         // Vite dev server (port 5173)
+  "build": "vite build && npm run build:cli",  // Build everything
+  "build:cli": "node scripts/build-cli.js",    // Build CLI only
+  "preview": "vite preview",             // Preview production build
+  "server": "node dist/server.js",       // Production server
+  "server:dev": "node src/server.js",    // Development server
+  "analyze": "node src/cli.js .",        // Analyze current dir
+  "analyze:ui": "node src/cli.js . --ui" // Analyze with UI
+}
 ```
 
 ## 🏗️ Architecture
 
 ### Hierarchical Driver System
-
-The analyzer uses a smart inheritance-based driver architecture:
 
 ```
 BaseDriver (abstract)
@@ -233,31 +268,23 @@ BaseDriver (abstract)
 ```
 
 **Benefits:**
-- **Code Reuse**: Child drivers inherit all parent functionality
-- **Extensibility**: Easy to add new languages/frameworks
-- **Maintainability**: Changes to base drivers propagate automatically
-- **Priority Matching**: More specific drivers match first (.blade.php → Blade, not PHP)
+- Code reuse through inheritance
+- Easy to extend with new languages
+- Automatic feature propagation
+- Priority-based file matching
 
-### Adding Custom Drivers
+### Tech Stack
 
-```javascript
-import { BaseDriver } from 'codecortex';
+**CLI:**
+- Node.js 18+
+- ES Modules
 
-class MyCustomDriver extends BaseDriver {
-  constructor() {
-    super('MyLanguage', 100); // name, priority
-    this.extensions = ['.custom'];
-  }
-
-  parse(content, filePath) {
-    // Your parsing logic
-    return {
-      loc: content.split('\n').length,
-      // ... other metrics
-    };
-  }
-}
-```
+**Web UI:**
+- Vue.js 3
+- Vite 5
+- Tailwind CSS 3
+- Chart.js 4
+- Express.js 4
 
 ## 📈 Metrics Explained
 
@@ -271,100 +298,137 @@ class MyCustomDriver extends BaseDriver {
 - **Cyclomatic Complexity**: Measures code complexity (decision points)
 - **Average Complexity**: Per function/method complexity
 
-### Laravel-Specific Metrics
-- **Code Quality Score**: 0-100 score based on:
-  - Dead code penalties (-2 per unused class, -1 per method)
-  - Duplicate code penalties (-3 per duplicate block)
-  - Security issue penalties (-2 to -10 based on severity)
+### Quality Score (0-100)
+- Deductions for dead code (-2 per class, -1 per method)
+- Deductions for duplicates (-3 per block)
+- Deductions for security issues (-2 to -10)
 
-## 🔧 Configuration
+## 🌐 API Documentation
 
-### Ignored Directories
+The web server exposes these endpoints:
 
-By default, the analyzer ignores:
-- `node_modules`
-- `vendor`
-- `.git`
-- `dist`, `build`
-- `coverage`
-- `.next`, `.nuxt`
-- `storage` (general analyzer only)
-- `.idea`, `.vscode`
+### GET /api/health
+Health check endpoint
+```json
+{
+  "status": "ok",
+  "timestamp": "2024-02-03T10:30:00.000Z"
+}
+```
 
-### Custom Ignore List
+### GET /api/analysis
+Get latest analysis results
+```json
+{
+  "globalStats": { ... },
+  "driverMetrics": { ... },
+  "aggregateMetrics": { ... },
+  "enhancedMetrics": { ... },
+  "timestamp": "2024-02-03T10:30:00.000Z"
+}
+```
 
-Extend the analyzer to customize ignored directories:
+### POST /api/analysis
+Submit analysis results (used by CLI)
 
+### DELETE /api/analysis
+Clear stored analysis data
+
+## 🎨 Customization
+
+### UI Theming
+
+Edit `tailwind.config.js`:
 ```javascript
-import CodeCortex from 'code-cortex';
+theme: {
+  extend: {
+    colors: {
+      primary: {
+        500: '#0ea5e9'  // Your brand color
+      }
+    }
+  }
+}
+```
 
-const analyzer = new CodeCortex();
-analyzer.ignoreList.push('my-custom-dir');
-analyzer.analyze('./my-project');
+### Chart Customization
+
+Edit chart components in `ui/src/components/`:
+- `LanguageChart.vue`
+- `MetricsChart.vue`
+
+## 📝 Example Workflows
+
+### Analyze Laravel Project
+
+```bash
+cd my-laravel-app
+codecortex . --analyzer laravel --ui
+# Opens dashboard showing Laravel-specific insights
+```
+
+### Export Report
+
+```bash
+codecortex . --json report.json
+# Creates detailed JSON report
+```
+
+### CI/CD Integration
+
+```bash
+# .github/workflows/analyze.yml
+- name: Analyze Code
+  run: |
+    npm install -g codecortex
+    codecortex . --json analysis.json
 ```
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-### Development Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/AnandPilania/CodeCortex.git
-
-# Install dependencies
-cd codecortex
-npm install
-
-# Run locally
-node src/cli.js ./test-project
-
-# Test global installation
-npm link
-codecortex ./test-project
-```
+Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ### Adding New Language Support
 
-1. Create a new driver in `src/drivers/`
-2. Extend `BaseDriver` or an existing driver
+1. Create driver in `src/drivers/`
+2. Extend `BaseDriver` or existing driver
 3. Implement `parse()` method
-4. Register in `CodeCortex` constructor
-5. Add tests and documentation
-
-## 📝 Changelog
-
-### Version 0.0.1 (Initial Release)
-- Multi-language support (PHP, JS, TS, React, Vue, Blade)
-- Hierarchical driver architecture
-- General project analyzer
-- Laravel-specific analyzer
-- Dead code detection
-- Duplicate code detection
-- Code quality scoring
+4. Register in analyzer
+5. Update documentation
 
 ## 📄 License
 
 MIT © [Anand Pilania](https://github.com/AnandPilania)
 
-## 🙏 Acknowledgments
-
-- Inspired by PHPMetrics, ESLint, and other code quality tools
-- Built with Node.js and modern ES modules
-
-## 🐛 Issues & Support
-
-- **Bug Reports**: [GitHub Issues](https://github.com/AnandPilania/CodeCortex/issues)
-- **Feature Requests**: [GitHub Discussions](https://github.com/AnandPilania/CodeCortex/discussions)
-- **Email**: pilaniaanand@gmail.com
-
 ## 🔗 Links
 
 - [npm Package](https://www.npmjs.com/package/CodeCortex)
 - [GitHub Repository](https://github.com/AnandPilania/CodeCortex)
+- [Issue Tracker](https://github.com/AnandPilania/CodeCortex/issues)
 - [Documentation](https://github.com/AnandPilania/CodeCortex#readme)
+
+## 🙏 Acknowledgments
+
+Built with:
+- Vue.js for reactive UI
+- Vite for lightning-fast builds
+- Chart.js for beautiful visualizations
+- Tailwind CSS for modern styling
+- Express.js for robust API
+
+## 📸 Screenshots
+
+### Dashboard Overview
+![Dashboard](https://placehold.co/800x400?text=Dashboard+Screenshot)
+
+### Laravel Analysis
+![Laravel](https://placehold.co/800x400?text=Laravel+Analysis)
+
+### Charts
+![Charts](https://placehold.co/800x400?text=Interactive+Charts)
 
 ---
 
 Made with ❤️ by [Anand Pilania](https://github.com/AnandPilania)
+
+**Star ⭐ this project if you find it useful!**

@@ -1,23 +1,25 @@
 {
     "name": "codecortex",
-    "version": "0.0.1",
-    "description": "A modular, multi-language project analyzer with hierarchical driver architecture for PHP, JavaScript, TypeScript, React, Vue, and Blade.",
-    "main": "./src/cli.js",
+    "version": "0.0.2",
+    "description": "A modular, multi-language project analyzer with hierarchical driver architecture and web UI for PHP, JavaScript, TypeScript, React, Vue, and Blade.",
+    "main": "./dist/cli.js",
     "type": "module",
     "bin": {
-        "codecortex": "./src/cli.js"
+        "codecortex": "./dist/cli.js"
     },
     "scripts": {
-        "start": "node ./src/cli.js",
-        "analyze": "node ./src/cli.js .",
-        "list-drivers": "node ./src/cli.js --list-drivers",
-        "show-hierarchy": "node ./src/cli.js --show-hierarchy",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "dev:ui": "vite",
+        "dev:server": "node src/server.js",
+        "build": "npm run build:ui && npm run build:server",
+        "build:ui": "vite build",
+        "build:server": "node scripts/build.js",
+        "preview": "vite preview",
+        "start": "node dist/server.js"
     },
     "keywords": [
-        "codecortex",
         "code-analyzer",
-        "project-analyzer",
+        "codecortex",
+        "project-nanalyzer",
         "static-analysis",
         "code-quality",
         "laravel",
@@ -31,7 +33,10 @@
         "duplicate-code",
         "complexity",
         "metrics",
-        "cli"
+        "cli",
+        "web-ui",
+        "dashboard",
+        "visualization"
     ],
     "author": {
         "name": "Anand Pilania",
@@ -40,14 +45,14 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/AnandPilania/CodeCortex.git"
+        "url": "git+https://github.com/AnandPilania/codecortex.git"
     },
     "bugs": {
-        "url": "https://github.com/AnandPilania/CodeCortex/issues"
+        "url": "https://github.com/AnandPilania/codecortex/issues"
     },
-    "homepage": "https://github.com/AnandPilania/CodeCortex#readme",
+    "homepage": "https://github.com/AnandPilania/codecortex#readme",
     "files": [
-        "src/",
+        "dist/",
         "README.md",
         "LICENSE"
     ],
@@ -55,7 +60,18 @@
         "node": ">=18.0.0"
     },
     "preferGlobal": true,
-    "publishConfig": {
-        "access": "public"
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.18.2"
+    },
+    "devDependencies": {
+        "@tailwindcss/postcss": "^4.1.18",
+        "@vitejs/plugin-vue": "^5.0.3",
+        "chart.js": "^4.4.1",
+        "esbuild": "^0.19.12",
+        "postcss": "^8.4.33",
+        "tailwindcss": "^4.1.18",
+        "vite": "^5.0.12",
+        "vue": "^3.4.15"
     }
 }
